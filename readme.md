@@ -1,3 +1,1 @@
-#Git trying to understand
-
-Pizdec ne ponyatno no ochen interesting
+# New Horizon Artifact modifiers to player
