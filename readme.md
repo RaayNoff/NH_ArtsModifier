@@ -1,1 +1,1 @@
-# New Horizon Artifact modifiers to player
+# NH_ArtsModifier
