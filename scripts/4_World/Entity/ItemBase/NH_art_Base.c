@@ -29,86 +29,46 @@ modded class NH_art_Base extends ItemBase
 		PlayerBase	old_player;
 		PlayerBase	new_player;
 		
-		if(newLoc.GetParent())
-		{
-			new_player = PlayerBase.Cast(newLoc.GetParent().GetHierarchyRootPlayer());
-		}
-		
-		if(oldLoc.GetParent())
-		{
-			Print("EEItemLocationChanged :: oldLoc.GetParent() :: " + oldLoc.GetParent())
-			old_player = PlayerBase.Cast(oldLoc.GetParent().GetHierarchyRootPlayer());
-			Print("EEItemLocationChanged :: old_player :: " + old_player);
-		}
+		new_player = PlayerBase.Cast(newLoc.GetParent().GetHierarchyRootPlayer());
+		old_player = PlayerBase.Cast(oldLoc.GetParent().GetHierarchyRootPlayer());
 			
 		if(new_player)
 		{
-			Print("EEItemLocationChanged :: if(new_player) :: " + new_player);
-			EntityAI parent = newLoc.GetParent(); //Получаем родителя для нового расположения слота
-			Print("EEItemLocationChanged :: EntityAI parent :: " + parent);
-			if(!parent.IsInherited(NH_ArtContainerBase)) //Если родителем неявляется предмет, относящийся к NH_ArtContainerBase
+			EntityAI parent = newLoc.GetParent();
+			
+			if(!parent.IsInherited(NH_ArtContainerBase))
 			{
-				Print("EEItemLocationChanged :: if(!parent.IsInherited(NH_ArtContainerBase))" + parent.IsInherited(NH_ArtContainerBase));
-				m_ModifiedPlayer = new_player; //Запоминаем игрока
-				Print("m_ModifiedPlayer :: " + m_ModifiedPlayer);
-				Print("new_player :: " + new_player);
-				
-				new_player.GetModifiersManager().ActivateModifier(m_ModifierID); //Выдаем ему в новом потоке модификатор
-				Print("Модификатор был выдан :: new_player.GetModifiersManager().ActivateModifier(m_ModifierID)");
-				return;
-			}
-			else if(parent.IsInherited(NH_ArtContainerBase))//Если родитель относится к классу NH_ArtContainerBase
-			{
-				Print("EEItemLocationChanged :: else if(parent.IsInherited(NH_ArtContainerBase))" + parent.IsInherited(NH_ArtContainerBase));
-				if(m_ModifiedPlayer)//При этом существует такой игрок, которому был выдан модификатор
+				if(!m_ModifiedPlayer)
 				{
-					Print("Модифицированный игрок существует");
-					m_ModifiedPlayer.GetModifiersManager().DeactivateModifier(m_ModifierID); //Мы забираем его в новом потоке (сомнительно, не уверен что будет работать как надо)
-					Print("Модификатор снят с игрока :: m_ModifiedPlayer.GetModifiersManager().DeactivateModifier(m_ModifierID)");
+					new_player.GetModifiersManager().ActivateModifier(m_ModifierID);
+					m_ModifiedPlayer = new_player;
+					Print("Modifier has been added");
+				}
+				else
+				{
+					Print("Player has attached art in different slot");
 				}
 				return;
 			}
-			else if(old_player)//Если существует игрок, которому был выдан модификатор И если новый игрок не является старым игроком, забираем модификатор
+			else if(parent.IsInherited(NH_ArtContainerBase))
 			{
-				m_ModifiedPlayer.GetModifiersManager().DeactivateModifier(m_ModifierID);
-				
-				Print("Игрок выложил предмет из инвентаря, модификатор снят :: m_ModifiedPlayer.GetModifiersManager().DeactivateModifier(m_ModifierID)");
+				if(m_ModifiedPlayer)
+				{
+					m_ModifiedPlayer.GetModifiersManager().DeactivateModifier(m_ModifierID);
+					m_ModifiedPlayer = null;
+					Print("Modifier was deleted");
+				}
 				return;
 			}
+			
 		}
 		
-		
-		/*if(oldLoc.GetParent()) // Если у старого предмета был родитель, тобишь не земля или не сила земли
-			old_player = PlayerBase.Cast(oldLoc.GetParent().GetHierarchyRootPlayer()); // получаем игрока, у которого был предмет
-		
-		if(new_player) // если существует новый игрок
+		if(old_player && (old_player != new_player))
 		{
-			EntityAI parent = newLoc.GetParent();// получаем место где расположен наш арт
-			
-			Print("EntityAI parent = newLoc.GetItem():::: " + parent);
-			
-			Print(parent.IsInherited(NH_ArtContainerBase));
-			
-			if(parent.IsInherited(NH_ArtContainerBase)) // если место где расположен наш арт, является контейнером
-			{
-				new_player.GetModifiersManager().DeactivateModifier(m_ModifierID);
-				return; // ретурним и не работаем с предметом
-			}
-			else if(old_player != new_player)
-			{
-				new_player.GetModifiersManager().ActivateModifier(m_ModifierID); // в противном случае, мы запускаем модификатор
-				Print("new_player.GetModifiersManager().ActivateModifier(m_ModifierID)");
-			}
-		}
-		
-		if(old_player && (old_player != new_player)) // Если есть старый игрок и при этом старый игрок не является, новым игроком (чтобы откинуть вероятность ложного срабатывания на обычной смене положения предмета)
-		{
-			old_player.GetModifiersManager().DeactivateModifier(m_ModifierID);
-			Print("old_player.GetModifiersManager().DeactivateModifier(m_ModifierID)");
-			Print("old_player" + old_player.ToString() + " new_player" + new_player.ToString());
-		}*/
-		
-		
+			m_ModifiedPlayer.GetModifiersManager().DeactivateModifier(m_ModifierID);
+			Print("Player dropped an art " + m_ModifiedPlayer.ToString());
+			m_ModifiedPlayer = null;
+		}		
 	}
 	
 	void SendModifier(PlayerBase player, bool condition)
