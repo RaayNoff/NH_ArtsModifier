@@ -1,6 +1,6 @@
 class NHArtModifier: ModifierBase
 {
-	
+	private float m_Time;
 	override void Init()
 	{
 		Print("NHArtModifier::Init");
@@ -9,6 +9,7 @@ class NHArtModifier: ModifierBase
 		m_ID 					= NHModifiers1.MDF_ART_Modifier;
 		m_TickIntervalInactive 	= DEFAULT_TICK_TIME_INACTIVE;
 		m_TickIntervalActive 	= 1;
+		m_Time					= 0.0;	
 	}
 	
 	override void OnReconnect(PlayerBase player)
@@ -30,7 +31,12 @@ class NHArtModifier: ModifierBase
 	
 	override private void OnTick(PlayerBase player, float deltaT)
 	{
-		player.SetStamina(100, 100);
+		m_Time += deltaT;
+		if(m_Time > 0.33)
+		{	
+			player.GetStaminaHandler().SetStamina(100);
+			m_Time = 0;
+		}
 	}
 	
 	override void OnDeactivate(PlayerBase player)
