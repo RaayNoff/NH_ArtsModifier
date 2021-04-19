@@ -21,11 +21,14 @@ class NHArtModifier: ModifierBase
 	override void OnActivate(PlayerBase player)
 	{		
 		Print("ArtMdfr::OnActivate");
+		player.OnEnterRadiation();
+		//player.SetPsiInside();
 	}
 	
 	override bool ActivateCondition(PlayerBase player)
 	{
 		Print("ArtMdfr::ActivateCondition");
+		if(player) return true;
 		return false;
 	}
 	
@@ -41,12 +44,14 @@ class NHArtModifier: ModifierBase
 	
 	override void OnDeactivate(PlayerBase player)
 	{
+		player.OnLeaveRadiation();
 		Print("ArtMdfr::OnDeactivate");
 	}
 	
 	override bool DeactivateCondition(PlayerBase player)
 	{
 		Print("ArtMdfr::DeactivateCondition");
-		return false;
+		if(player) return false;
+		return true;
 	}
 }
