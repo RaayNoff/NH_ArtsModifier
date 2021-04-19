@@ -1,7 +1,7 @@
-enum NHModifiers1
+enum NHArtefactsModifiers
 {
-  MDF_ART_Modifier
-}
+	MDF_ART_VIVERT = 0,
+};
 
 modded class ModifiersManager
 {
@@ -9,10 +9,6 @@ modded class ModifiersManager
 	{
         NHDebugPrint("ModifiersManager::Init");
 		super.Init();
-		AddModifier(new RadXMdfr);
-		AddModifier(new ApplySplintMdfr);
-		AddModifier(new NHRadiationSicknessMdfr);
-		AddModifier(new NHArtModifier);
-		//AddModifier(new MentalDisorderMdfr);
+		AddModifier(new NHArtModifierVivert);
 	}
-}
+};
