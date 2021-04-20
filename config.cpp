@@ -14,7 +14,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.1;
-		requiredAddons[] = { "DZ_Scripts", "NH_Scripts"};
+		requiredAddons[] = { "DZ_Scripts", "NH_Scripts", "NH_Gear_Artefacts"};
 	};
 };
 class CfgMods
@@ -38,4 +38,13 @@ class CfgMods
 			};
 		};
 	};
+};
+
+class CfgVehicles
+{
+	class NH_art_vivert;
+    class NH_art_vivert1: NH_art_vivert
+    {
+        ArtModifier = 0; //NHArtefactsModifiers enum
+    };
 };
