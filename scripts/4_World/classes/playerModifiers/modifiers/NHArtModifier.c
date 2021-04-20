@@ -1,34 +1,35 @@
-class NHArtModifier: ModifierBase
+class NHArtModifierVivert: ModifierBase
 {
 	private float m_Time;
+	
 	override void Init()
 	{
 		Print("NHArtModifier::Init");
 		m_TrackActivatedTime 	= true;
-		m_IsPersistent 			= true;
-		m_ID 					= NHModifiers1.MDF_ART_Modifier;
+		m_IsPersistent 			= false;
+		m_ID 					= NHArtefactsModifiers.MDF_ART_VIVERT;
 		m_TickIntervalInactive 	= DEFAULT_TICK_TIME_INACTIVE;
 		m_TickIntervalActive 	= 1;
 		m_Time					= 0.0;	
 	}
 	
-	override void OnReconnect(PlayerBase player)
-	{
-		Print("ArtMdfr::OnReconnect");
-		OnActivate(player);
-	}
-	
 	override void OnActivate(PlayerBase player)
-	{		
-		Print("ArtMdfr::OnActivate");
-		player.OnEnterRadiation();
-		//player.SetPsiInside();
+	{
+		NH_NotificationsManager.SendNotificationToPlayerIdentity(player.GetIdentity(), 3, "Модификатор активирован!", "Ура");
+	}
+
+	override void OnDeactivate(PlayerBase player)
+	{
+		NH_NotificationsManager.SendNotificationToPlayerIdentity(player.GetIdentity(), 3, "Модификатор деактивирован!", "Пиздец");
 	}
 	
 	override bool ActivateCondition(PlayerBase player)
 	{
-		Print("ArtMdfr::ActivateCondition");
-		if(player) return true;
+		return false;
+	}
+	
+	override bool DeactivateCondition(PlayerBase player)
+	{
 		return false;
 	}
 	
@@ -38,20 +39,7 @@ class NHArtModifier: ModifierBase
 		if(m_Time > 0.33)
 		{	
 			player.GetStaminaHandler().SetStamina(100);
-			m_Time = 0;
+			m_Time = 0.0;
 		}
-	}
-	
-	override void OnDeactivate(PlayerBase player)
-	{
-		player.OnLeaveRadiation();
-		Print("ArtMdfr::OnDeactivate");
-	}
-	
-	override bool DeactivateCondition(PlayerBase player)
-	{
-		Print("ArtMdfr::DeactivateCondition");
-		if(player) return false;
-		return true;
 	}
 }
