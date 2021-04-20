@@ -42,8 +42,8 @@ class NHArtModifierSoul: ModifierBase
 		{
 			if(m_Time > 2.0)
 			{	
-				player.SetHealth("GlobalHealth", "Health", player.GetHealth("GlobalHealth", "Health") - 0.5);
-				player.SetHealth("GlobalHealth", "Health", player.GetHealth("", "Blood") - 20);
+				player.SetHealth("GlobalHealth", "Health", player.GetHealth("GlobalHealth", "Health") + 0.5);
+				player.SetHealth("GlobalHealth", "Health", player.GetHealth("", "Blood") + 20);
 				m_Time = 0.0;
 			}
 		}
