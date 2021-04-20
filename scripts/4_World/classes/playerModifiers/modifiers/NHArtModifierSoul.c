@@ -1,4 +1,4 @@
-class NHArtModifierVivert: ModifierBase
+class NHArtModifierSoul: ModifierBase
 {
 	private float m_Time;
 	
@@ -7,7 +7,7 @@ class NHArtModifierVivert: ModifierBase
 		Print("NHArtModifier::Init");
 		m_TrackActivatedTime 	= true;
 		m_IsPersistent 			= false;
-		m_ID 					= NHArtefactsModifiers.MDF_ART_VIVERT;
+		m_ID 					= NHArtefactsModifiers.MDF_ART_SOUL;
 		m_TickIntervalInactive 	= DEFAULT_TICK_TIME_INACTIVE;
 		m_TickIntervalActive 	= 1;
 		m_Time					= 0.0;	
@@ -42,8 +42,8 @@ class NHArtModifierVivert: ModifierBase
 		{
 			if(m_Time > 2.0)
 			{	
-				//player.GetAdditionalHealth().AddHealth("Psi", -1.0);
-				//player.GetAdditionalHealth().AddHealth("Radiation", 0.5);
+				player.SetHealth("GlobalHealth", "Health", player.GetHealth("GlobalHealth", "Health") - 0.5);
+				player.SetHealth("GlobalHealth", "Health", player.GetHealth("", "Blood") - 20);
 				m_Time = 0.0;
 			}
 		}

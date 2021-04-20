@@ -47,4 +47,9 @@ class CfgVehicles
     {
         ArtModifier = 0; //NHArtefactsModifiers enum
     };
+    class NH_art_soul;
+    class NH_art_soul1: NH_art_soul
+    {
+    	ArtModifier = 1;
+    };
 };
