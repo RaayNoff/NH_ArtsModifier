@@ -35,6 +35,7 @@ modded class NH_art_Base extends ItemBase
 			
 			if(new_player)
 			{
+				Print("if new player passed ");
 				EntityAI parent = newLoc.GetParent();
 				
 				if(!parent.IsInherited(NH_ArtContainerBase))

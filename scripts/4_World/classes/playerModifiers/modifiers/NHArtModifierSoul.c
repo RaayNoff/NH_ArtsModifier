@@ -17,6 +17,7 @@ class NHArtModifierSoul: ModifierBase
 	{
 		//if(MiscGameplayFunctions.GetPDAs(player))
 		//	NH_NotificationsManager.SendNotificationToPlayerIdentity(player.GetIdentity(), 3, "Обнаружено радиационное излучение", "рекомендуется использование контейнера.");
+		Print("Some shit");
 	}
 
 	override void OnDeactivate(PlayerBase player)
@@ -38,14 +39,12 @@ class NHArtModifierSoul: ModifierBase
 	override private void OnTick(PlayerBase player, float deltaT)
 	{
 		m_Time += deltaT;
-		if(GetGame().IsServer())
-		{
-			if(m_Time > 2.0)
-			{	
-				player.SetHealth("GlobalHealth", "Health", player.GetHealth("GlobalHealth", "Health") + 0.5);
-				player.SetHealth("GlobalHealth", "Health", player.GetHealth("", "Blood") + 20);
-				m_Time = 0.0;
-			}
+		if(m_Time > 0.33)
+		{		
+			player.SetHealth("GlobalHealth", "Health", player.GetHealth("GlobalHealth", "Health") + 0.5);
+			player.SetHealth("GlobalHealth", "Health", player.GetHealth("", "Blood") + 20);
+			player.GetStaminaHandler().SetStamina(100);
+			m_Time = 0.0;
 		}
 	}
 }
