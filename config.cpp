@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
-//DeRap: DC_FastTravel\config.bin
+//DeRap: NH_ArtsModifier\config.bin
 //Produced from mikero's Dos Tools Dll version 7.79
-//https://mikero.bytex.digitDC/Downloads
-//'now' is Mon Feb 08 23:30:31 2021 : 'file' last modified on Mon Nov 09 21:55:35 2020
+//https://mikero.bytex.digital/Downloads
+//'now' is Wed Apr 21 13:43:32 2021 : 'file' last modified on Wed Apr 21 12:29:48 2021
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -14,7 +14,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.1;
-		requiredAddons[] = { "DZ_Scripts", "NH_Scripts", "NH_Gear_Artefacts"};
+		requiredAddons[] = {"DZ_Scripts","NH_Scripts","NH_Gear_Artefacts"};
 	};
 };
 class CfgMods
@@ -39,17 +39,16 @@ class CfgMods
 		};
 	};
 };
-
 class CfgVehicles
 {
 	class NH_art_vivert;
-    class NH_art_vivert1: NH_art_vivert
-    {
-        ArtModifier = 0; //NHArtefactsModifiers enum
-    };
-    class NH_art_soul;
-    class NH_art_soul1: NH_art_soul
-    {
-    	ArtModifier = 1;
-    };
+	class NH_art_vivert1: NH_art_vivert
+	{
+		ArtModifier = 0;
+	};
+	class NH_art_soul;
+	class NH_art_soul1: NH_art_soul
+	{
+		ArtModifier = 1;
+	};
 };

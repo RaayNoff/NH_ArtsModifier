@@ -15,14 +15,14 @@ class NHArtModifierSoul: ModifierBase
 	
 	override void OnActivate(PlayerBase player)
 	{
-		if(MiscGameplayFunctions.GetPDAs(player))
-			NH_NotificationsManager.SendNotificationToPlayerIdentity(player.GetIdentity(), 3, "Обнаружено радиационное излучение", "рекомендуется использование контейнера.");
+		//if(MiscGameplayFunctions.GetPDAs(player))
+		//	NH_NotificationsManager.SendNotificationToPlayerIdentity(player.GetIdentity(), 3, "Обнаружено радиационное излучение", "рекомендуется использование контейнера.");
 	}
 
 	override void OnDeactivate(PlayerBase player)
 	{
-		if(MiscGameplayFunctions.GetPDAs(player))
-		NH_NotificationsManager.SendNotificationToPlayerIdentity(player.GetIdentity(), 3, "Модификатор деактивирован!", "Пиздец");
+		//if(MiscGameplayFunctions.GetPDAs(player))
+		//NH_NotificationsManager.SendNotificationToPlayerIdentity(player.GetIdentity(), 3, "Модификатор деактивирован!", "Пиздец");
 	}
 	
 	override bool ActivateCondition(PlayerBase player)
