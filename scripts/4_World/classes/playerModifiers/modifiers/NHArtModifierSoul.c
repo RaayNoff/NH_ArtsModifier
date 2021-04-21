@@ -1,6 +1,6 @@
 class NHArtModifierSoul: ModifierBase
-{
-	private float m_Time;
+{	
+	private static int HEALTH_INCREMENT_PER_SEC = 5;
 	
 	override void Init()
 	{
@@ -10,7 +10,6 @@ class NHArtModifierSoul: ModifierBase
 		m_ID 					= NHArtefactsModifiers.MDF_ART_SOUL;
 		m_TickIntervalInactive 	= DEFAULT_TICK_TIME_INACTIVE;
 		m_TickIntervalActive 	= 1;
-		m_Time					= 0.0;	
 	}
 	
 	override void OnActivate(PlayerBase player)
@@ -38,13 +37,8 @@ class NHArtModifierSoul: ModifierBase
 	
 	override private void OnTick(PlayerBase player, float deltaT)
 	{
-		m_Time += deltaT;
-		if(m_Time > 0.33)
-		{		
-			player.SetHealth("GlobalHealth", "Health", player.GetHealth("GlobalHealth", "Health") + 0.5);
-			player.SetHealth("GlobalHealth", "Health", player.GetHealth("", "Blood") + 20);
-			player.GetStaminaHandler().SetStamina(100);
-			m_Time = 0.0;
-		}
+			float currenthealth = player.GetHealth("GlobalHealth", "Health");
+		
+			player.SetHealth("GlobalHealth", "Health", (currenthealth + (HEALTH_INCREMENT_PER_SEC * deltaT)));
 	}
 }
