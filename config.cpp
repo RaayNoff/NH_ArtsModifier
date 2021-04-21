@@ -44,46 +44,46 @@ class CfgVehicles
 	class NH_art_Base;
 	class NH_art_vivert: NH_art_Base
 	{
-		ArtModifier = NHArtefactsModifiers.MDF_ART_VIVERT;
+		ArtModifier = 1;
 	};
 	class NH_art_soul: NH_art_Base
 	{
-		ArtModifier = NHArtefactsModifiers.MDF_ART_SOUL;
+		ArtModifier = 2;
 	};
 	class NH_art_fireball: NH_art_Base
 	{
-		ArtModifier = NHArtefactsModifiers.MDF_ART_FIREBALL;
+		ArtModifier = 3;
 	};
 	class NH_art_medusa: NH_art_Base
 	{
-		ArtModifier = NHArtefactsModifiers.MDF_ART_MEDUSA;
+		ArtModifier = 4;
 	};
 	class NH_art_mincer_meat: NH_art_Base
 	{
-		ArtModifier = NHArtefactsModifiers.MDF_ART_MINCER_MEAT;
+		ArtModifier = 5;
 	};
 	class NH_art_dummy_dummy: NH_art_Base
 	{
-		ArtModifier = NHArtefactsModifiers.MDF_ART_DUMMY_DUMMY;
+		ArtModifier = 6;
 	};
 	class NH_art_dummy_battery: NH_art_Base
 	{
-		ArtModifier = NHArtefactsModifiers.MDF_ART_DUMMY_BATTERY;
+		ArtModifier = 7;
 	};
 	class NH_art_eye: NH_art_Base
 	{
-		ArtModifier = NHArtefactsModifiers.MDF_ART_EYE;
+		ArtModifier = 8;
 	};
 	class NH_art_fuzz_kolobok: NH_art_Base
 	{
-		ArtModifier = NHArtefactsModifiers.MDF_ART_FUZZ_KOLOBOK;
+		ArtModifier = 9;
 	};
 	class NH_art_kristall: NH_art_Base
 	{
-		ArtModifier = NHArtefactsModifiers.MDF_ART_KRISTALL;
+		ArtModifier = 10;
 	};
 	class NH_art_psi_field: NH_art_Base
 	{
-		ArtModifier = NHArtefactsModifiers.MDF_ART_PSI_FIELd;
+		ArtModifier = 11;
 	};
 };

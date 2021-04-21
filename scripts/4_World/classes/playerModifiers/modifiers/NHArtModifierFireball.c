@@ -1,22 +1,23 @@
-class NHArtModifierVivert: ModifierBase
-{
-	
+class NHArtModifierFireball: ModifierBase
+{	
 	override void Init()
 	{
 		Print("NHArtModifier::Init");
 		m_TrackActivatedTime 	= true;
 		m_IsPersistent 			= false;
-		m_ID 					= NHArtefactsModifiers.MDF_ART_VIVERT;
+		m_ID 					= NHArtefactsModifiers.MDF_ART_FIREBALL;
 		m_TickIntervalInactive 	= DEFAULT_TICK_TIME_INACTIVE;
 		m_TickIntervalActive 	= 1;
 	}
 	
 	override void OnActivate(PlayerBase player)
 	{
+		player.GetStatHeatComfort().Set(2);
 	}
 
 	override void OnDeactivate(PlayerBase player)
 	{
+		player.GetStatHeatComfort().Set(0);
 	}
 	
 	override bool ActivateCondition(PlayerBase player)
@@ -31,7 +32,8 @@ class NHArtModifierVivert: ModifierBase
 	
 	override private void OnTick(PlayerBase player, float deltaT)
 	{
-		//player.GetAdditionalHealth().AddHealth("Radiation", (NHArtefactsModifiersValues.RADIATION_INCREMENT_PER_SEC * deltaT));
-		//player.GetAdditionalHealth().AddHealth("Psi", (NHArtefactsModifiersValues.PSI_DECREMENT_PER_SEC * deltaT));
+		float currentheat = player.GetStatHeatBuffer().Get();
+		
+		player.GetStatHeatBuffer().Set(currentheat + (NHArtefactsModifiersValues.HEATBUFFER_INCREMENT_PER_SEC * deltaT));
 	}
 }

@@ -2,7 +2,7 @@ modded class NH_art_Base extends ItemBase
 {
 	int GetModifierID()
 	{
-		return ConfigGetInt("ArtModifier");
+		return ConfigGetInt("ArtModifier");	
 	}
 	
 	override void EEItemLocationChanged(notnull InventoryLocation oldLoc, notnull InventoryLocation newLoc)
