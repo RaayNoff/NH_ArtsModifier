@@ -20,6 +20,10 @@ modded class NH_art_Base extends ItemBase
 			ItemBase itm_new = ItemBase.Cast(newLoc.GetParent());
 			ItemBase itm_old = ItemBase.Cast(oldLoc.GetParent());
 			
+			EntityAI artefact = ItemBase.Cast(newLoc.GetItem());
+			if(!artefact)
+				artefact = ItemBase.Cast(oldLoc.GetItem());
+			
 			if(!itm_new)
 				new_player = PlayerBase.Cast(newLoc.GetParent());
 			else
@@ -39,13 +43,13 @@ modded class NH_art_Base extends ItemBase
 				EntityAI parent = newLoc.GetParent();
 				
 				if(!parent.IsInherited(NH_ArtContainerBase))
-					new_player.GetModifiersManager().ActivateModifier(GetModifierID());
+					new_player.GetModifiersManager().ActivateModifier(NHArtefactsModifiers.MDF_ART_SOUL);
 				else
-					new_player.GetModifiersManager().DeactivateModifier(GetModifierID());	
-			}
+					new_player.GetModifiersManager().DeactivateModifier(NHArtefactsModifiers.MDF_ART_SOUL);
+			}	
 			
 			if(old_player && (old_player != new_player))
-				old_player.GetModifiersManager().DeactivateModifier(GetModifierID());	
+				old_player.GetModifiersManager().DeactivateModifier(NHArtefactsModifiers.MDF_ART_SOUL);
 		}
 	}
 }

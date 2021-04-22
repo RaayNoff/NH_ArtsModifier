@@ -13,17 +13,6 @@ enum NHArtefactsModifiers
 	MDF_ART_PSI_FIELD,
 };
 
-enum NHArtefactsModifiersValues
-{
-	HEALTH_INCREMENT_PER_SEC = 5,
-	BLOOD_INCREMENT_PER_SEC = 20,
-	RADIATION_DECREMENT_PER_SEC = -0.33,
-	RADIATION_INCREMENT_PER_SEC = 0.33,
-	PSI_DECREMENT_PER_SEC = -0.66,
-	PSI_INCREMENT_PER_SEC = 0.66,
-	HEATBUFFER_INCREMENT_PER_SEC = 1.0,
-};
-
 modded class ModifiersManager
 {
 	override void Init()

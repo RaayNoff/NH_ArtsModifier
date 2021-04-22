@@ -5,7 +5,7 @@ class NHArtModifierFireball: ModifierBase
 		Print("NHArtModifier::Init");
 		m_TrackActivatedTime 	= true;
 		m_IsPersistent 			= false;
-		m_ID 					= NHArtefactsModifiers.MDF_ART_FIREBALL;
+		m_ID 					= 333;//NHArtefactsModifiers.MDF_ART_FIREBALL;
 		m_TickIntervalInactive 	= DEFAULT_TICK_TIME_INACTIVE;
 		m_TickIntervalActive 	= 1;
 	}
