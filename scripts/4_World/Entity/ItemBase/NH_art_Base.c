@@ -5,6 +5,27 @@ modded class NH_art_Base extends ItemBase
 		return ConfigGetInt("ArtModifier");	
 	}
 	
+	bool FindAnotherArtefact(ItemBase artefact, PlayerBase player)
+	{
+		ItemBase itm = MiscGameplayFunctions.FindItemInInventory(artefact.GetType(), player);
+		if(itm)
+		{
+			EntityAI parent = itm.GetParent();
+			if(parent)
+			{
+				if(parent.IsInherited(NH_ArtContainerBase))
+				{
+					return false;
+				}
+				else 
+				{
+					return true;
+				}	
+			}
+		}
+		return false;
+	}
+	
 	override void EEItemLocationChanged(notnull InventoryLocation oldLoc, notnull InventoryLocation newLoc)
 	{
 		super.EEItemLocationChanged(oldLoc, newLoc);
@@ -50,9 +71,9 @@ modded class NH_art_Base extends ItemBase
 				
 				Print("artefact :: " + artefact);
 				Print("artefactType :: " + artefact.GetType());
-				Print("Condition :: " + MiscGameplayFunctions.FindItemInInventory(artefact.GetType(), old_player));
+				//Print("Condition :: " + MiscGameplayFunctions.FindItemInInventory(artefact.GetType(), old_player));
 				
-				if(!MiscGameplayFunctions.FindItemInInventory(artefact.GetType(), old_player))
+				//if(!FindAnotherArtefact(artefact, old_player))
 					old_player.GetModifiersManager().DeactivateModifier(GetModifierID());
 				
 			}

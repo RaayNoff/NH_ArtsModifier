@@ -22,5 +22,13 @@ modded class ModifiersManager
 		AddModifier(new NHArtModifierVivert);
 		AddModifier(new NHArtModifierSoul);
 		AddModifier(new NHArtModifierFireball);
+		AddModifier(new NHArtModifierMedusa);
+		AddModifier(new NHArtModifierMeat);
+		AddModifier(new NHArtModifierDummy);
+		AddModifier(new NHArtModifierBattery);
+		AddModifier(new NHArtModifierEye);
+		AddModifier(new NHArtModifierKolobok);
+		AddModifier(new NHArtModifierKristall);
+		AddModifier(new NHArtModifierPsiField);
 	}
 };
