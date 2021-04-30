@@ -20,10 +20,6 @@ modded class NH_art_Base extends ItemBase
 			ItemBase itm_new = ItemBase.Cast(newLoc.GetParent());
 			ItemBase itm_old = ItemBase.Cast(oldLoc.GetParent());
 			
-			EntityAI artefact = ItemBase.Cast(newLoc.GetItem());
-			if(!artefact)
-				artefact = ItemBase.Cast(oldLoc.GetItem());
-			
 			if(!itm_new)
 				new_player = PlayerBase.Cast(newLoc.GetParent());
 			else
@@ -43,13 +39,23 @@ modded class NH_art_Base extends ItemBase
 				EntityAI parent = newLoc.GetParent();
 				
 				if(!parent.IsInherited(NH_ArtContainerBase))
-					new_player.GetModifiersManager().ActivateModifier(NHArtefactsModifiers.MDF_ART_SOUL);
+					new_player.GetModifiersManager().ActivateModifier(GetModifierID());
 				else
-					new_player.GetModifiersManager().DeactivateModifier(NHArtefactsModifiers.MDF_ART_SOUL);
+					new_player.GetModifiersManager().DeactivateModifier(GetModifierID());
 			}	
 			
 			if(old_player && (old_player != new_player))
-				old_player.GetModifiersManager().DeactivateModifier(NHArtefactsModifiers.MDF_ART_SOUL);
+			{
+				ItemBase artefact = ItemBase.Cast(oldLoc.GetItem());
+				
+				Print("artefact :: " + artefact);
+				Print("artefactType :: " + artefact.GetType());
+				Print("Condition :: " + MiscGameplayFunctions.FindItemInInventory(artefact.GetType(), old_player));
+				
+				if(!MiscGameplayFunctions.FindItemInInventory(artefact.GetType(), old_player))
+					old_player.GetModifiersManager().DeactivateModifier(GetModifierID());
+				
+			}
 		}
 	}
 }

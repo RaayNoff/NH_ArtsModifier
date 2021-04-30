@@ -44,46 +44,46 @@ class CfgVehicles
 	class NH_art_Base;
 	class NH_art_vivert: NH_art_Base
 	{
-		ArtModifier = 1;
+		ArtModifier = 9193;
 	};
 	class NH_art_soul: NH_art_Base
 	{
-		ArtModifier = 2;
+		ArtModifier = 9485;
 	};
 	class NH_art_fireball: NH_art_Base
 	{
-		ArtModifier = 3;
+		ArtModifier = 8585;
 	};
 	class NH_art_medusa: NH_art_Base
 	{
-		ArtModifier = 4;
+		ArtModifier = 9274;
 	};
 	class NH_art_mincer_meat: NH_art_Base
 	{
-		ArtModifier = 5;
+		ArtModifier = 7493;
 	};
 	class NH_art_dummy_dummy: NH_art_Base
 	{
-		ArtModifier = 6;
+		ArtModifier = 8698;
 	};
 	class NH_art_dummy_battery: NH_art_Base
 	{
-		ArtModifier = 7;
+		ArtModifier = 9198;
 	};
 	class NH_art_eye: NH_art_Base
 	{
-		ArtModifier = 8;
+		ArtModifier = 9878;
 	};
 	class NH_art_fuzz_kolobok: NH_art_Base
 	{
-		ArtModifier = 9;
+		ArtModifier = 8884;
 	};
 	class NH_art_kristall: NH_art_Base
 	{
-		ArtModifier = 10;
+		ArtModifier = 48585;
 	};
 	class NH_art_psi_field: NH_art_Base
 	{
-		ArtModifier = 11;
+		ArtModifier = 8577;
 	};
 };

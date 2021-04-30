@@ -13,10 +13,12 @@ class NHArtModifierVivert: ModifierBase
 	
 	override void OnActivate(PlayerBase player)
 	{
+		NHDebugPrint("NHArtModifierVivert :: OnActivate");
 	}
 
 	override void OnDeactivate(PlayerBase player)
 	{
+		NHDebugPrint("NHArtModifierVivert :: OnDeactivate");
 	}
 	
 	override bool ActivateCondition(PlayerBase player)
