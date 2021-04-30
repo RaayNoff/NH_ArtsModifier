@@ -3,7 +3,7 @@ class NHArtModifierPsiField: ModifierBase
 	
 	override void Init()
 	{
-		Print("NHArtModifierPsiField::Init");
+		NHDebugPrint("NHArtModifierPsiField::Init");
 		m_TrackActivatedTime 	= true;
 		m_IsPersistent 			= false;
 		m_ID 					= NHArtefactsModifiers.MDF_ART_PSI_FIELD;

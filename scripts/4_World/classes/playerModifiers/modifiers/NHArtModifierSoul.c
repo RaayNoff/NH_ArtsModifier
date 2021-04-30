@@ -2,7 +2,7 @@ class NHArtModifierSoul: ModifierBase
 {		
 	override void Init()
 	{
-		Print("NHArtModifier::Init");
+		NHDebugPrint("NHArtModifier::Init");
 		m_TrackActivatedTime 	= true;
 		m_IsPersistent 			= false;
 		m_ID 					= NHArtefactsModifiers.MDF_ART_SOUL;

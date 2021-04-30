@@ -3,7 +3,7 @@ class NHArtModifierDummy: ModifierBase
 	
 	override void Init()
 	{
-		Print("NHArtModifierDummy::Init");
+		NHDebugPrint("NHArtModifierDummy::Init");
 		m_TrackActivatedTime 	= true;
 		m_IsPersistent 			= false;
 		m_ID 					= NHArtefactsModifiers.MDF_ART_DUMMY_DUMMY;
@@ -33,7 +33,6 @@ class NHArtModifierDummy: ModifierBase
 	
 	override private void OnTick(PlayerBase player, float deltaT)
 	{
-		
 		player.GetAdditionalHealth().AddHealth( NHArtefactsModifiersValues.MENTAL_INCREMENT_PER_SEC * deltaT );
 	}
 }

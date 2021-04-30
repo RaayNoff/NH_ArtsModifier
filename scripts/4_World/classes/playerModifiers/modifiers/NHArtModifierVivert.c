@@ -3,7 +3,7 @@ class NHArtModifierVivert: ModifierBase
 	
 	override void Init()
 	{
-		Print("NHArtModifierVivert::Init");
+		NHDebugPrint("NHArtModifierVivert::Init");
 		m_TrackActivatedTime 	= true;
 		m_IsPersistent 			= false;
 		m_ID 					= NHArtefactsModifiers.MDF_ART_VIVERT;

@@ -2,7 +2,7 @@ class NHArtModifierMeat: ModifierBase
 {		
 	override void Init()
 	{
-		Print("NHArtModifierMeat::Init");
+		NHDebugPrint("NHArtModifierMeat::Init");
 		m_TrackActivatedTime 	= true;
 		m_IsPersistent 			= false;
 		m_ID 					= NHArtefactsModifiers.MDF_ART_MINCER_MEAT;

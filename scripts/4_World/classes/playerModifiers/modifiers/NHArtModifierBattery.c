@@ -2,7 +2,7 @@ class NHArtModifierBattery: ModifierBase
 {
 	override void Init()
 	{
-		Print("NHArtModifierBattery::Init");
+		NHDebugPrint("NHArtModifierBattery::Init");
 		m_TrackActivatedTime 	= true;
 		m_IsPersistent 			= false;
 		m_ID 					= NHArtefactsModifiers.MDF_ART_DUMMY_BATTERY;

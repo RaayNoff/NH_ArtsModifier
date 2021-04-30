@@ -2,7 +2,7 @@ class NHArtModifierFireball: ModifierBase
 {	
 	override void Init()
 	{
-		Print("NHArtModifierFireball::Init");
+		NHDebugPrint("NHArtModifierFireball::Init");
 		m_TrackActivatedTime 	= true;
 		m_IsPersistent 			= false;
 		m_ID 					= NHArtefactsModifiers.MDF_ART_FIREBALL;
@@ -12,12 +12,12 @@ class NHArtModifierFireball: ModifierBase
 	
 	override void OnActivate(PlayerBase player)
 	{
-		Print("NHArtModifierFireball :: OnActivate");
+		NHDebugPrint("NHArtModifierFireball :: OnActivate");
 	}
 
 	override void OnDeactivate(PlayerBase player)
 	{
-		Print("NHArtModifierFireball :: OnDeactivate");
+		NHDebugPrint("NHArtModifierFireball :: OnDeactivate");
 	}
 	
 	override bool ActivateCondition(PlayerBase player)
@@ -32,12 +32,8 @@ class NHArtModifierFireball: ModifierBase
 	
 	override private void OnTick(PlayerBase player, float deltaT)
 	{
-		//Print("NHArtModifierFireball :: OnTick");
 		float currentheat = player.GetStatHeatBuffer().Get();
 		float currentHeatComfort = player.GetStatHeatComfort().Get();
-		
-		//Print("currentheat :: " + currentheat);
-		//Print("currentHeatComfort :: " + currentHeatComfort);		
 		
 		player.GetStatHeatComfort().Set(currentHeatComfort + (NHArtefactsModifiersValues.HEATCOMFORT_INCREMENT_PER_SEC * deltaT));
 		player.GetStatHeatBuffer().Set(currentheat + (NHArtefactsModifiersValues.HEATBUFFER_INCREMENT_PER_SEC * deltaT));

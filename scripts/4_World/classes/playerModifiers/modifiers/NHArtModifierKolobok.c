@@ -3,7 +3,7 @@ class NHArtModifierKolobok: ModifierBase
 	
 	override void Init()
 	{
-		Print("NHArtModifierKolobok::Init");
+		NHDebugPrint("NHArtModifierKolobok::Init");
 		m_TrackActivatedTime 	= true;
 		m_IsPersistent 			= false;
 		m_ID 					= NHArtefactsModifiers.MDF_ART_FUZZ_KOLOBOK;

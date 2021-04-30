@@ -2,42 +2,54 @@ modded class NH_art_Base extends ItemBase
 {
 	int GetModifierID()
 	{
+		NHDebugPrint("NH_art_Base :: GetModifierID");
 		return ConfigGetInt("ArtModifier");	
 	}
 	
-	bool FindAnotherArtefact(ItemBase artefact, PlayerBase player)
+	bool GetDeactivateCondition(PlayerBase player, ItemBase art)
 	{
-		ItemBase itm = MiscGameplayFunctions.FindItemInInventory(artefact.GetType(), player);
-		if(itm)
+		NHDebugPrint("NH_art_Base :: GetDeactivateCondition");
+		array<NH_art_Base> artsInInventory = MiscGameplayFunctions.GetArtefacts(player);
+		array<NH_art_Base> sanitaziedArtsInInvenroty = new array<NH_art_Base>;
+				
+		if(artsInInventory)
 		{
-			EntityAI parent = itm.GetParent();
-			if(parent)
+			if(artsInInventory.Count() >= 1)
 			{
-				if(parent.IsInherited(NH_ArtContainerBase))
+				foreach(NH_art_Base artInInventory : artsInInventory)
+				{
+					if(artInInventory.GetType() == art.GetType())
+					{
+						sanitaziedArtsInInvenroty.Insert(artInInventory);
+					}
+				}
+			}
+			 
+			foreach(NH_art_Base sanitaziedArtInInvenroty : sanitaziedArtsInInvenroty)
+			{
+				EntityAI parent = sanitaziedArtInInvenroty.GetParent();
+				if(!parent.IsInherited(NH_ArtContainerBase))
 				{
 					return false;
 				}
-				else 
-				{
-					return true;
-				}	
 			}
 		}
-		return false;
+		
+		return true;
 	}
+	
+	
 	
 	override void EEItemLocationChanged(notnull InventoryLocation oldLoc, notnull InventoryLocation newLoc)
 	{
 		super.EEItemLocationChanged(oldLoc, newLoc);
+		NHDebugPrint("NH_art_Base :: EEItemLocationChanged");
 	
 		if(GetGame().IsServer())
 		{
 			PlayerBase new_player;
 			PlayerBase old_player;
-			
-			Print("Art modif id: " + GetModifierID());
-			Print("newLoc.GetParent(): " + newLoc.GetParent());
-			
+
 			ItemBase itm_new = ItemBase.Cast(newLoc.GetParent());
 			ItemBase itm_old = ItemBase.Cast(oldLoc.GetParent());
 			
@@ -51,29 +63,26 @@ modded class NH_art_Base extends ItemBase
 			else
 				old_player = PlayerBase.Cast(oldLoc.GetParent().GetHierarchyRootPlayer());
 			
-			Print("		new_player: " + new_player);
-			Print("		old_player: " + old_player);
+			ItemBase artefact = ItemBase.Cast(newLoc.GetItem());
 			
 			if(new_player)
 			{
-				Print("if new player passed ");
 				EntityAI parent = newLoc.GetParent();
 				
 				if(!parent.IsInherited(NH_ArtContainerBase))
+				{
 					new_player.GetModifiersManager().ActivateModifier(GetModifierID());
+				}
 				else
-					new_player.GetModifiersManager().DeactivateModifier(GetModifierID());
+				{
+					if(GetDeactivateCondition(new_player, artefact)
+						new_player.GetModifiersManager().DeactivateModifier(GetModifierID());
+				}
 			}	
 			
 			if(old_player && (old_player != new_player))
-			{
-				ItemBase artefact = ItemBase.Cast(oldLoc.GetItem());
-				
-				Print("artefact :: " + artefact);
-				Print("artefactType :: " + artefact.GetType());
-				//Print("Condition :: " + MiscGameplayFunctions.FindItemInInventory(artefact.GetType(), old_player));
-				
-				//if(!FindAnotherArtefact(artefact, old_player))
+			{				
+				if(GetDeactivateCondition(old_player, artefact))
 					old_player.GetModifiersManager().DeactivateModifier(GetModifierID());
 				
 			}

@@ -3,7 +3,7 @@ class NHArtModifierKristall: ModifierBase
 	
 	override void Init()
 	{
-		Print("NHArtModifierKristall::Init");
+		NHDebugPrint("NHArtModifierKristall::Init");
 		m_TrackActivatedTime 	= true;
 		m_IsPersistent 			= false;
 		m_ID 					= NHArtefactsModifiers.MDF_ART_KRISTALL;

@@ -3,7 +3,7 @@ class NHArtModifierEye: ModifierBase
 	int m_Time;
 	override void Init()
 	{
-		Print("NHArtModifierEye::Init");
+		NHDebugPrint("NHArtModifierEye::Init");
 		m_TrackActivatedTime 	= true;
 		m_IsPersistent 			= false;
 		m_ID 					= NHArtefactsModifiers.MDF_ART_EYE;

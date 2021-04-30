@@ -2,7 +2,7 @@ class NHArtModifierMedusa: ModifierBase
 {	
 	override void Init()
 	{
-		Print("NHArtModifierMedusa::Init");
+		NHDebugPrint("NHArtModifierMedusa::Init");
 		m_TrackActivatedTime 	= true;
 		m_IsPersistent 			= false;
 		m_ID 					= NHArtefactsModifiers.MDF_ART_MEDUSA;
@@ -12,12 +12,12 @@ class NHArtModifierMedusa: ModifierBase
 	
 	override void OnActivate(PlayerBase player)
 	{
-		Print("NHArtModifierMedusa :: OnActivate");
+		NHDebugPrint("NHArtModifierMedusa :: OnActivate");
 	}
 
 	override void OnDeactivate(PlayerBase player)
 	{
-		Print("NHArtModifierMedusa :: OnDeactivate");
+		NHDebugPrint("NHArtModifierMedusa :: OnDeactivate");
 	}
 	
 	override bool ActivateCondition(PlayerBase player)
